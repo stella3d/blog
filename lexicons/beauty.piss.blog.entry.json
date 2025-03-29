@@ -1,0 +1,48 @@
+{
+    "lexicon": 1,
+    "id": "beauty.piss.blog.entry",
+    "defs": {
+        "main": {
+            "type": "record",
+            "description": "A blog entry",
+            "key": "tid",
+            "record": {
+                "type": "object",
+                "required": [
+                    "content", "title", "createdAt"
+                ],
+                "properties": {
+                    "content": {
+                        "type": "string",
+                        "maxLength": 100000,
+                        "description": "The content of the blog post. This should be some flavor of Markdown."
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "datetime",
+                        "description": "The date and time when the blog post was created. This is used for sorting and displaying the post's creation date."
+                    },
+                    "title": {
+                        "type": "string",
+                        "maxLength": 420,
+                        "description": "The title of the blog post."
+                    },
+                    "images": {
+                        "type": "ref",
+                        "ref": "beauty.piss.embed.images",
+                        "description": "The set of images, if any, embedded in the blog post."
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "maxLength": 64
+                        },
+                        "maxLength": 10,
+                        "description": "An array of tags associated with the blog post. Tags can help categorize and organize posts."
+                    }
+                }
+            }
+        }
+    }
+}
