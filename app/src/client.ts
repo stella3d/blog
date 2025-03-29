@@ -76,7 +76,6 @@ export async function getBlogIndex(repo: string, rkey: string): Promise<GetIndex
         },
     });
 
-    console.log('fetched data from server:', data);
     // Cache the data for 30 minutes (1800000 milliseconds)
     const expiration = Date.now() + 1800000;
     localStorage.setItem(cacheKey, JSON.stringify({ expiration, data }));
@@ -133,8 +132,6 @@ export async function getBlogEntry(repo: string, rkey: string): Promise<PostReco
         },
     });
 
-    console.log('fetched blog entry record:', data);
-
     if (!isPostRecord(data.value)) {
         throw new Error('fetched data does not match expected type for PostRecord');
     }
@@ -147,6 +144,5 @@ export async function getBlogEntry(repo: string, rkey: string): Promise<PostReco
 }
 
 export function purgeLocalCache() {
-    Object.keys(localStorage)
-        .forEach(key => localStorage.removeItem(key));
+    localStorage.clear();
 }
