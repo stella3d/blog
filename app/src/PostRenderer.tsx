@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import rehypeHighlight from 'rehype-highlight';
-import 'highlight.js/styles/github.css'; // TODO - customize theme
+// TODO - customize theme
+import 'highlight.js/styles/base16/seti-ui.css'; 
 
 interface MarkdownRendererProps {
   content: string;
