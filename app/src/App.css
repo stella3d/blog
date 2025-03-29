@@ -28,7 +28,10 @@
   border-top: 1px solid #ccc;
 }
 .post-renderer-container h1 {
-  color:pink
+  color:pink;
+}
+.post-renderer-container h2 {
+  color:lightskyblue;
 }
 
 .app-container {
