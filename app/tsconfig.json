@@ -1,5 +1,11 @@
 {
   "files": [],
+  "compilerOptions": {
+    "paths": {
+      "atcuteLexicons": ["src/atcuteLexicon.ts"]
+    },
+    "types": ["atcuteLexicons", "@atcute/whitewind/lexicons"]
+  },
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }

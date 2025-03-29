@@ -33,7 +33,7 @@ export type PostIndex = {
 export type PostIndexEntry = {
   title: string;
   createdAt: string; // ISO date string
-  tags: Array<string>;
+  tags?: Array<string>;
   post: {
     cid: string; // Content Identifier
     uri: string; // URI for accessing the post
