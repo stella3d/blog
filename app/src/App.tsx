@@ -17,7 +17,6 @@ function App() {
     getBlogIndex(MY_DID, INDEX_RKEY)
       .then(json => {
         setIndexContent(json.value);
-        console.log('index content: ', json.value); // Log the index content for debugging
         let posts = json.value.posts; 
         if (posts.length > 0) {
           let latest = posts[0]; 

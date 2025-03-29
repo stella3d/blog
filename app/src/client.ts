@@ -112,9 +112,7 @@ export async function getBlogEntry(repo: string, rkey: string): Promise<PostReco
 
     if (cachedResult) {
         try {
-            console.log('cached result: ', cachedResult);
             const { expiration, data } = JSON.parse(cachedResult);
-            console.log(data.value)
             if (Date.now() < expiration) {
                 if (!isPostRecord(data.value)) {
                     console.warn('Cached data does not match expected type, fetching fresh data');
@@ -138,7 +136,6 @@ export async function getBlogEntry(repo: string, rkey: string): Promise<PostReco
     console.log('fetched blog entry record:', data);
 
     if (!isPostRecord(data.value)) {
-        console.log('incorrect shape for PostRecord: ', data.value);
         throw new Error('fetched data does not match expected type for PostRecord');
     }
 
