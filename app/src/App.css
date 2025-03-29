@@ -35,7 +35,7 @@
 }
 
 .post-index-sidebar {
-  width: 240px;
+  width: 200px;
   border-right: 1px solid #ccc;
   padding-right: 10px;
 }
@@ -48,4 +48,8 @@
 
 .blog-post {
   flex: 1;
+  /* Replace left border with a right border divider */
+  border-right: 1px solid #ccc;
+  padding-right: 10px;
+  margin-right: 20px;
 }
