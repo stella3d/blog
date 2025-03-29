@@ -14,7 +14,7 @@
                 "properties": {
                     "content": {
                         "type": "string",
-                        "maxLength": 100000,
+                        "maxLength": 200000,
                         "description": "The content of the blog post. This should be some flavor of Markdown."
                     },
                     "createdAt": {
