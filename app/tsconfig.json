@@ -2,7 +2,7 @@
   "files": [],
   "compilerOptions": {
     "paths": {
-      "atcuteLexicons": ["src/atcuteLexicon.ts"]
+      "atcuteLexicons": ["./src/atcuteLexicon.ts"]
     },
     "types": ["atcuteLexicons", "@atcute/whitewind/lexicons"]
   },
