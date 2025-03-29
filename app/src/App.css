@@ -17,13 +17,13 @@
   padding: 1rem;
 }
 
-/* Added styles for PostRenderer container */
+
 .post-renderer-container {
-  margin-top: 20px; /* clear fixed header */
+  margin-top: 4px; 
   align-self: flex-start;
 }
 .post-renderer-container hr {
-  margin: 1rem 0;
+  margin: 0.2rem 0;
   border: 0;
   border-top: 1px solid #ccc;
 }
@@ -35,7 +35,7 @@
 }
 
 .post-index-sidebar {
-  width: 180px;
+  width: 200px;
   border-right: 1px solid #ccc;
   padding-right: 10px;
 }
