@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import PostRenderer from './PostRenderer'
 import PostIndexSidebar from './PostIndexSidebar'
-import { PostIndex } from './types'
+import { PostIndex, PostIndexEntry } from './types'
 import { getBlogEntryFromAtUri, getBlogIndex } from './client'
 
 const MY_DID = 'did:plc:7mnpet2pvof2llhpcwattscf'; 
@@ -11,7 +11,20 @@ const INDEX_RKEY = '3lljxymbgil2r';
 function App() {
   const [postContent, setPostContent] = useState('');
   const [indexContent, setIndexContent] = useState<PostIndex | null>(null);
-  const [indexCursor, setIndexCursor] = useState<number>(0); // Track the index cursor for debugging
+  const [indexCursor, setIndexCursor] = useState<number>(0);
+
+  // New handler for sidebar clicks
+  const handlePostClick = (entry: PostIndexEntry, index: number) => {
+    getBlogEntryFromAtUri(entry.post.uri)
+      .then(entryData => {
+        setPostContent(entryData.content);
+        setIndexCursor(index);
+      })
+      .catch(err => {
+        console.error('error fetching post content: ', err);
+        setPostContent('failed to load post content 🙃');
+      });
+  };
 
   useEffect(() => {
     getBlogIndex(MY_DID, INDEX_RKEY)
@@ -39,7 +52,7 @@ function App() {
   return (
     <div className="app-container"> {/* Container with flex styling */}
       {indexContent && (
-        <PostIndexSidebar posts={indexContent.posts} cursor={indexCursor}/>
+        <PostIndexSidebar posts={indexContent.posts} cursor={indexCursor} onPostClick={handlePostClick}/>
       )}
       <div className="blog-post">
         <h1 id="headtext">stellz' blog</h1>
