@@ -40,6 +40,12 @@
   padding-right: 10px;
 }
 
+.post-index-sidebar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 .blog-post {
   flex: 1;
 }
