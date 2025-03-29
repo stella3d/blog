@@ -1,7 +1,7 @@
 #root {
-  max-width: 1650px;
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0.1rem;
   text-align: center;
 }
 
@@ -35,7 +35,7 @@
 }
 
 .post-index-sidebar {
-  width: 200px;
+  width: 180px;
   border-right: 1px solid #ccc;
   padding-right: 10px;
 }
