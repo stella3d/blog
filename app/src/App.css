@@ -27,6 +27,9 @@
   border: 0;
   border-top: 1px solid #ccc;
 }
+.post-renderer-container h1 {
+  color:pink
+}
 
 .app-container {
   display: flex;
