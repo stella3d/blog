@@ -1,0 +1,42 @@
+{
+    "lexicon": 1,
+    "id": "beauty.piss.blog.index",
+    "defs": {
+        "main": {
+            "type": "record",
+            "description": "An index of blog posts",
+            "key": "tid",
+            "record": {
+                "type": "object",
+                "required": [
+                    "posts"
+                ],
+                "properties": {
+                    "posts": {
+                        "type": "array",
+                        "items": {
+                            "type": "ref",
+                            "ref": "#item"
+                        },
+                        "description": "Reverse-chronological list of all posts in the blog."
+                    }
+                }
+            }
+        },
+        "item": {
+            "type": "object",
+            "required": ["title", "post"],
+            "properties": {
+                "title": {
+                    "type": "ref",
+                    "ref": "beauty.piss.blog.entry#title"
+                },
+                "tags": {
+                    "type": "ref",
+                    "ref": "beauty.piss.blog.entry#tags"
+                },
+                "post": { "type": "ref", "ref": "com.atproto.repo.strongRef" }
+            }
+        }
+    }
+}
