@@ -12,17 +12,16 @@
                     "content", "title", "createdAt"
                 ],
                 "properties": {
-                    "title": { "type": "ref", "ref": "beauty.piss.blog.entry#title" },
-                    "tags": { "type": "ref", "ref": "beauty.piss.blog.entry#tags" },
+                    "title": { "type": "ref", "ref": "#title" },
+                    "tags": { "type": "ref", "ref": "#tags" },
                     "content": {
                         "type": "string",
                         "maxLength": 200000,
                         "description": "The content of the blog post. This should be some flavor of Markdown."
                     },
                     "createdAt": {
-                        "type": "string",
-                        "format": "datetime",
-                        "description": "The date and time when the blog post was created. This is used for sorting and displaying the post's creation date."
+                        "type": "ref",
+                        "ref": "#createdAt"
                     },
                     "images": {
                         "type": "ref",
@@ -31,6 +30,11 @@
                     }
                 }
             }
+        },
+        "createdAt": {
+            "type": "string",
+            "format": "datetime",
+            "description": "The date and time when the blog post was created. This is used for sorting and displaying the post's creation date."
         },
         "title": {
             "type": "string",

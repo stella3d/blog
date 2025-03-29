@@ -35,6 +35,10 @@
                     "type": "ref",
                     "ref": "beauty.piss.blog.entry#tags"
                 },
+                "createdAt": {
+                    "type": "ref",
+                    "ref": "beauty.piss.blog.entry#createdAt"
+                },
                 "post": { "type": "ref", "ref": "com.atproto.repo.strongRef" }
             }
         }
