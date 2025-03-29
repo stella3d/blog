@@ -77,8 +77,8 @@ export async function getBlogIndex(repo: string, rkey: string): Promise<GetIndex
     });
 
     console.log('fetched data from server:', data);
-    // Cache the data for 20 minutes (1200000 milliseconds)
-    const expiration = Date.now() + 1200000;
+    // Cache the data for 30 minutes (1800000 milliseconds)
+    const expiration = Date.now() + 1800000;
     localStorage.setItem(cacheKey, JSON.stringify({ expiration, data }));
 
     if (!isGetIndexResponse(data)) {
@@ -88,6 +88,24 @@ export async function getBlogIndex(repo: string, rkey: string): Promise<GetIndex
 }
 
 const BLOG_ENTRY_CACHE_MS = 604800000; // 1 week 
+
+// "at://did:plc:7mnpet2pvof2llhpcwattscf/beauty.piss.blog.entry/3lljr3jdcjc26" 
+// get DID and rkey from strings that look like that
+export async function getBlogEntryFromAtUri(atUri: string): Promise<PostRecord> {
+    const regex = /at:\/\/([^\/]+)\/beauty\.piss\.blog\.entry\/([^\/]+)/;
+    const match = atUri.match(regex);
+    console.log(match);
+
+    if (match && match.length === 3) {
+        const repo = match[1]; // Extracted repo DID
+        const rkey = match[2]; // Extracted record key
+        return await getBlogEntry(repo, rkey);
+    }
+
+    throw new Error(
+        `Invalid at-uri format or unable to extract repo and rkey from: ${atUri}`
+    );
+}
 
 export async function getBlogEntry(repo: string, rkey: string): Promise<PostRecord> {
     const cacheKey = `blogEntry-${repo}-${rkey}`;
@@ -118,7 +136,7 @@ export async function getBlogEntry(repo: string, rkey: string): Promise<PostReco
 
     console.log('fetched blog entry record:', data);
 
-    if (!isPostRecord(data)) {
+    if (!isPostRecord(data.value)) {
         throw new Error('fetched data does not match expected type for PostRecord');
     }
 
@@ -126,5 +144,11 @@ export async function getBlogEntry(repo: string, rkey: string): Promise<PostReco
     const expiration = Date.now() + BLOG_ENTRY_CACHE_MS;
     localStorage.setItem(cacheKey, JSON.stringify({ expiration, data }));
 
-    return data;
+    return data.value;
+}
+
+export function purgeBlogIndexCache() {
+    Object.keys(localStorage)
+        .filter(key => key.startsWith('blogIndex-'))
+        .forEach(key => localStorage.removeItem(key));
 }

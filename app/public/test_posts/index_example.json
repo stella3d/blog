@@ -2,21 +2,21 @@
   "$type": "beauty.piss.blog.index",
   "posts": [
     {
+      "title": "Test Post",
+      "createdAt": "2025-03-29T21:32:23.034Z",
+      "tags": ["test"],
+      "post": {
+        "cid": "bafyreicnuo7wigocu4yebkgb6su5ekytchfve2a7fmnmkw7kytqh4xsaby",
+        "uri": "at://did:plc:7mnpet2pvof2llhpcwattscf/beauty.piss.blog.entry/3llkbr5gpdo26"
+      }
+    },
+    {
       "title": "TEST POST",
       "createdAt": "2025-03-29T16:28:55.502Z",
       "tags": ["rust", "test"],
       "post": {
         "cid": "bafyreif3afke37uyykpui7z37yld4efvaw5kdxt6az7opcfrbj2ubvtipa",
         "uri": "at://did:plc:7mnpet2pvof2llhpcwattscf/beauty.piss.blog.entry/3lljr3jdcjc26"
-      }
-    },
-    {
-      "title": "This One Isn't Real",
-      "createdAt": "2025-03-30T12:10:00.000Z",
-      "tags": ["fakecid", "test"],
-      "post": {
-        "cid": "bafyreif3afke37uyykpui7z37yld4efvaw5kdxt6az7opcfrbj2ubvtipb",
-        "uri": "at://did:plc:7mnpet2pvof2llhpcwattscf/beauty.piss.blog.entry/3lljr3jdcjc27"
       }
     }
   ]
