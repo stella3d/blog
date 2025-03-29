@@ -1,6 +1,6 @@
 # This is the main header
 
-this is some intro text before the smaller headers, it's short
+this is some intro text before the smaller headers, it's short. let's make this line longer and test how wide the rendering gets before it wraps, hopefully not too bad. let's make it even wider now, get really stretched with it.
 
 ## this is a 2nd level header
 

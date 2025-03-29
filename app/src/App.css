@@ -10,10 +10,20 @@
 }
 
 #headtext {
-  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   margin: 0;
   padding: 1rem;
+}
+
+/* Added styles for PostRenderer container */
+.post-renderer-container {
+  margin-top: 20px; /* clear fixed header */
+  align-self: flex-start;
+}
+.post-renderer-container hr {
+  margin: 1rem 0;
+  border: 0;
+  border-top: 1px solid #ccc;
 }

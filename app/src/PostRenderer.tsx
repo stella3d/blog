@@ -10,9 +10,12 @@ interface MarkdownRendererProps {
 
 const PostRenderer: React.FC<MarkdownRendererProps> = ({ content }) => {
   return (
-    <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
-      {content}
-    </ReactMarkdown>
+    <div className="post-renderer-container">
+      <hr />
+      <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
+        {content}
+      </ReactMarkdown>
+    </div>
   );
 };
 
