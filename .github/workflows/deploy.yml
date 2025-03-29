@@ -12,7 +12,7 @@ jobs:
       - name: Install dependencies
         run: cd app; npm install
       - name: Build with Vite
-        run: cd app; vite build
+        run: cd app; npx vite build
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
