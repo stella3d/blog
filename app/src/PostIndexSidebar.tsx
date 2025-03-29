@@ -17,7 +17,7 @@ const PostIndexSidebar: React.FC<PostIndexSidebarProps> = ({ posts }) => {
             <span style={{ color: "grey", fontSize: "0.7em" }}>
               {isoDateToDisplay(entry.createdAt)}{" "}
             </span>
-            <span style={{ color: "pink", fontSize: "0.7em", marginLeft: "0.5em" }}>
+            <span style={{ color: "pink", fontSize: "0.7em", marginLeft: "0.5em", fontWeight: "bold" }}>
               {"🏷️ "}  
               {entry.tags.slice(0, 2).join(", ")}
               {entry.tags.length > 2 && " ..."}
