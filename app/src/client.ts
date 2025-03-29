@@ -94,7 +94,6 @@ const BLOG_ENTRY_CACHE_MS = 604800000; // 1 week
 export async function getBlogEntryFromAtUri(atUri: string): Promise<PostRecord> {
     const regex = /at:\/\/([^\/]+)\/beauty\.piss\.blog\.entry\/([^\/]+)/;
     const match = atUri.match(regex);
-    console.log(match);
 
     if (match && match.length === 3) {
         const repo = match[1]; // Extracted repo DID
@@ -113,12 +112,14 @@ export async function getBlogEntry(repo: string, rkey: string): Promise<PostReco
 
     if (cachedResult) {
         try {
+            console.log('cached result: ', cachedResult);
             const { expiration, data } = JSON.parse(cachedResult);
+            console.log(data.value)
             if (Date.now() < expiration) {
-                if (!isPostRecord(data)) {
+                if (!isPostRecord(data.value)) {
                     console.warn('Cached data does not match expected type, fetching fresh data');
                 } 
-                return data;
+                return data.value;
             }
         } catch {
             // Ignore JSON errors and fetch fresh data
@@ -137,6 +138,7 @@ export async function getBlogEntry(repo: string, rkey: string): Promise<PostReco
     console.log('fetched blog entry record:', data);
 
     if (!isPostRecord(data.value)) {
+        console.log('incorrect shape for PostRecord: ', data.value);
         throw new Error('fetched data does not match expected type for PostRecord');
     }
 
@@ -147,8 +149,7 @@ export async function getBlogEntry(repo: string, rkey: string): Promise<PostReco
     return data.value;
 }
 
-export function purgeBlogIndexCache() {
+export function purgeLocalCache() {
     Object.keys(localStorage)
-        .filter(key => key.startsWith('blogIndex-'))
         .forEach(key => localStorage.removeItem(key));
 }
