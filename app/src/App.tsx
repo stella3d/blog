@@ -21,22 +21,14 @@ function App() {
   }, []);
 
   useEffect(() => {
-    fetch('/test_posts/index_example.json')
-      .then(res => res.json())
-      .then(json => setIndexContent(json))
-      .catch(err => console.error(err));
-  }, []);
-
-  useEffect(() => {
     getBlogIndex(MY_DID, INDEX_RKEY)
-      .then(() => {
-        // Handle the response if needed
-        console.log('Blog index fetched successfully');
+      .then(json => {
+        setIndexContent(json.value);
       })
       .catch((error) => {
-        console.error('Error fetching blog index:', error);
+        console.error('error fetching blog index: ', error);
       });
-  })
+  }, []);
 
   return (
     <div className="app-container"> {/* Container with flex styling */}
