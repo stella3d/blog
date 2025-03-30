@@ -16,7 +16,7 @@ jobs:
       - name: Build with Vite
         run: cd app; npx vite build
       - name: List built assets
-        run: ls -la app/dist/assets
+        run: ls -la app/dist
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
