@@ -28,7 +28,7 @@ const PostIndexSidebar: React.FC<PostIndexSidebarProps> = ({ posts, cursor, onPo
               </span>
             </span>
             {entry.tags && entry.tags.length > 0 && (
-              <span style={{ color: "pink", fontSize: "0.7em", marginLeft: "0.5em", fontWeight: "bold" }}>
+              <span style={{ color: "rgb(251, 192, 255)", fontSize: "0.7em", marginLeft: "0.5em", fontWeight: "bold" }}>
                 {"🏷️ "}
                 {entry.tags.slice(0, 3).join(", ")}
                 {entry.tags.length > 3 && " ..."}

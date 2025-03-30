@@ -4,7 +4,7 @@
   font-weight: 400;
 
   color-scheme: dark light;
-  color: rgba(156, 255, 255, 0.87);
+  color: rgba(138, 251, 255, 0.87);
   background-color: #181818;
 
   font-synthesis: none;
@@ -38,7 +38,20 @@ body {
   justify-content: center;
   min-width: 320px;
   min-height: 100vh;
-  font-family: LoveLetterTW, sans-serif, Avenir, Helvetica, Arial, system-ui; /* Use the custom font */
+  font-family: sans-serif, Avenir, Helvetica, Arial, system-ui; 
+}
+
+body h1 {
+  font-family: LoveLetterTW, sans-serif, Avenir, Helvetica, Arial, system-ui; 
+}
+
+.post-index-sidebar > ul > li {
+  font-family: LoveLetterTW, sans-serif, Avenir, Helvetica, Arial, system-ui;
+  font-size: 0.9em; 
+}
+
+.post-index-sidebar > ul > li > span {
+  font-family: sans-serif, Avenir, Helvetica, Arial, system-ui; 
 }
 
 h1 {

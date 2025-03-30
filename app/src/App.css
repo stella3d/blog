@@ -15,7 +15,7 @@
   width: 100%;
   margin: 0;
   padding: 1rem;
-  animation: smoothFilter 30s infinite ease-in-out;
+  animation: smoothFilter 40s infinite ease-in-out;
 }
 
 .post-renderer-container {
@@ -30,7 +30,8 @@
   border-top: 1px solid #5b5b5b;
 }
 .post-renderer-container h1 {
-  color:pink;
+  color:rgb(251, 192, 255);
+  font-family: LoveLetterTW, sans-serif, Avenir, Helvetica, Arial, system-ui; 
 }
 .post-renderer-container h2 {
   color:lightskyblue;
@@ -48,7 +49,7 @@
   bottom: 0;
   width: 200px;
   border-right: 1px solid #5b5b5b;
-  padding: 10px;
+  padding: 6px;
   overflow-y: auto;
 }
 
