@@ -79,7 +79,7 @@ button:focus-visible {
 }
 
 .post-index-sidebar li:hover {
-  background-color: #f0f0f0;
+  background-color: #1F1F1F !important;
 }
 
 @media (prefers-color-scheme: light) {
