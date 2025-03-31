@@ -14,7 +14,7 @@ function App() {
   const [indexContent, setIndexContent] = useState<PostIndex | null>(null);
   const [indexCursor, setIndexCursor] = useState<number>(0);
 
-  const getPostIndexOnLoad = (posts: PostIndexEntry[]) => {
+  const getPostIndexOnLoad = (posts: PostIndexEntry[]) : number => {
     let slug = getSlugFromUrl()
     if (slug) {
       // find the post with the matching slug if specified
@@ -33,13 +33,9 @@ function App() {
   const setPost = (record: PostRecord, index: number, entry: PostIndexEntry) => {
     setPostContent(record.content)
     setIndexCursor(index);
-
-    let hostName = window.location.hostname;
-    // cf pages deployment won't properly handle the links yet
-    if (!(hostName === 'stellz.club' || hostName === 'piss.beauty')) {
-      const slug = slugify(entry.title);
-      window.history.pushState({ path: slug }, '', `/${slug}`);
-    }
+    // set the post slug so people can share the link
+    const slug = slugify(entry.title);
+    window.history.pushState({ path: slug }, '', `/${slug}`);
   }
 
   const loadPost = (entry: PostIndexEntry, index: number) => {
