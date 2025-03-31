@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useLayoutEffect } from 'react'
 import './App.css'
 import PostRenderer from './PostRenderer'
 import PostIndexSidebar from './PostIndexSidebar'
@@ -26,7 +26,7 @@ function App() {
       });
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     // light mode domain lol
     if (window.location.hostname === 'stellz.club') {
       document.documentElement.style.setProperty('color-scheme', 'dark light'); 
