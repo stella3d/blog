@@ -53,13 +53,6 @@ function App() {
       });
   };
 
-  useLayoutEffect(() => {
-    // light mode domain lol
-    if (window.location.hostname === 'stellz.club') {
-      document.documentElement.style.setProperty('color-scheme', 'dark light'); 
-    }
-  }, [])
-
   useEffect(() => {
     getBlogIndex(MY_DID, INDEX_RKEY)
       .then(json => {
