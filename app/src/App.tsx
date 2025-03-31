@@ -27,10 +27,9 @@ function App() {
   };
 
   useEffect(() => {
-    const rootElement = document.documentElement;
     // light mode domain lol
     if (window.location.hostname === 'stellz.club') {
-      rootElement.style.setProperty('color-scheme', 'dark light'); 
+      document.documentElement.style.setProperty('color-scheme', 'dark light'); 
     }
   }, [])
 
