@@ -14,7 +14,6 @@ function App() {
   const [indexContent, setIndexContent] = useState<PostIndex | null>(null);
   const [indexCursor, setIndexCursor] = useState<number>(0);
 
-  // New handler for sidebar clicks
   const handlePostClick = (entry: PostIndexEntry, index: number) => {
     getBlogEntryFromAtUri(entry.post.uri)
       .then(entryData => {
@@ -26,6 +25,14 @@ function App() {
         setPostContent('failed to load post content 🙃');
       });
   };
+
+  useEffect(() => {
+    const rootElement = document.documentElement;
+    // light mode domain lol
+    if (window.location.hostname === 'stellz.club') {
+      rootElement.style.setProperty('color-scheme', 'dark light'); 
+    }
+  }, [])
 
   useEffect(() => {
     getBlogIndex(MY_DID, INDEX_RKEY)
