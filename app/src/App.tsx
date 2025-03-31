@@ -30,6 +30,18 @@ function App() {
     return 0; // default to the 1st post if no slug is matched
   }
 
+  const setPost = (record: PostRecord, index: number, entry: PostIndexEntry) => {
+    setPostContent(record.content)
+    setIndexCursor(index);
+
+    let hostName = window.location.hostname;
+    // cf pages deployment won't properly handle the links yet
+    if (!(hostName === 'stellz.club' || hostName === 'piss.beauty')) {
+      const slug = slugify(entry.title);
+      window.history.pushState({ path: slug }, '', `/${slug}`);
+    }
+  }
+
   const loadPost = (entry: PostIndexEntry, index: number) => {
     getBlogEntryFromAtUri(entry.post.uri)
       .then(record => {
@@ -76,14 +88,6 @@ function App() {
       </div>
     </div>
   )
-
-  function setPost(record: PostRecord, index: number, entry: PostIndexEntry) {
-    setPostContent(record.content)
-    setIndexCursor(index)
-    // set the URL path to the post slug so it can be shared by copying
-    const slug = slugify(entry.title)
-    window.history.pushState({ path: slug }, '', `/${slug}`)
-  }
 }
 
 export default App
