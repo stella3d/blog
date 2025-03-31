@@ -1,4 +1,4 @@
-import { useState, useEffect, useLayoutEffect } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import PostRenderer from './PostRenderer'
 import PostIndexSidebar from './PostIndexSidebar'
