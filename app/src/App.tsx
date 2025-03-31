@@ -2,7 +2,7 @@ import { useState, useEffect, useLayoutEffect } from 'react'
 import './App.css'
 import PostRenderer from './PostRenderer'
 import PostIndexSidebar from './PostIndexSidebar'
-import { PostIndex, PostIndexEntry } from './types'
+import { PostIndex, PostIndexEntry, PostRecord } from './types'
 import { getBlogEntryFromAtUri, getBlogIndex } from './client'
 import { getSlugFromUrl, slugify } from './slugs'
 
@@ -14,11 +14,26 @@ function App() {
   const [indexContent, setIndexContent] = useState<PostIndex | null>(null);
   const [indexCursor, setIndexCursor] = useState<number>(0);
 
-  const handlePostClick = (entry: PostIndexEntry, index: number) => {
+  const getPostIndexOnLoad = (posts: PostIndexEntry[]) => {
+    let slug = getSlugFromUrl()
+    if (slug) {
+      // find the post with the matching slug if specified
+      const slugIndex = posts.findIndex(p => slugify(p.title) === slug)
+      if (slugIndex == -1) {
+        // remove the slug from the url - there's no post with that label
+        window.history.pushState({ path: '/' }, '', '/') // reset to root
+      }
+      else {
+        return slugIndex;
+      }
+    }
+    return 0; // default to the 1st post if no slug is matched
+  }
+
+  const loadPost = (entry: PostIndexEntry, index: number) => {
     getBlogEntryFromAtUri(entry.post.uri)
-      .then(entryData => {
-        setPostContent(entryData.content);
-        setIndexCursor(index);
+      .then(record => {
+        setPost(record, index, entry)
       })
       .catch(err => {
         console.error('error fetching post content: ', err);
@@ -38,26 +53,12 @@ function App() {
       .then(json => {
         setIndexContent(json.value);
         let posts = json.value.posts;
-        let postBySlug: PostIndexEntry | null | undefined = null; 
-        if (posts.length > 0) {
-          let slug = getSlugFromUrl();
-          if (slug) {
-            // Check for a specific slug in the posts
-            postBySlug = posts.find(post => slugify(post.title) === slug);
-          }
-
-          const toLoad = postBySlug || posts[0]; // Fallback to the first post if no slug match
-
-          getBlogEntryFromAtUri(toLoad.post.uri)
-            .then(entry => {
-              setPostContent(entry.content);
-              setIndexCursor(0);
-            })
-            .catch(err => {
-              console.error('error fetching latest post content: ', err);
-              setPostContent('failed to load the latest post content 🙃');
-          });
+        if (posts.length < 1) {
+          setPostContent('no posts found (this is an error, sorry)');
         }
+
+        let postIndex = getPostIndexOnLoad(posts)
+        loadPost(posts[postIndex], postIndex);
       })
       .catch((error) => {
         console.error('error fetching blog index: ', error);
@@ -67,7 +68,7 @@ function App() {
   return (
     <div className="app-container"> {/* Container with flex styling */}
       {indexContent && (
-        <PostIndexSidebar posts={indexContent.posts} cursor={indexCursor} onPostClick={handlePostClick}/>
+        <PostIndexSidebar posts={indexContent.posts} cursor={indexCursor} onPostClick={loadPost}/>
       )}
       <div className="blog-post">
         <h1 id="headtext">stellz' blog</h1>
@@ -75,6 +76,14 @@ function App() {
       </div>
     </div>
   )
+
+  function setPost(record: PostRecord, index: number, entry: PostIndexEntry) {
+    setPostContent(record.content)
+    setIndexCursor(index)
+    // set the URL path to the post slug so it can be shared by copying
+    const slug = slugify(entry.title)
+    window.history.pushState({ path: slug }, '', `/${slug}`)
+  }
 }
 
 export default App
