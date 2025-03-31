@@ -1,12 +1,10 @@
 export function slugify(title: string): string {
-  return title
-    .toLowerCase()
-    .normalize('NFD')                // separate accents from letters
-    .replace(/[\u0300-\u036f]/g, '')   // remove accents
-    .replace(/[^a-z0-9\s-]/g, '')      // remove invalid characters
-    .trim()
-    .replace(/\s+/g, '-')             // replace spaces with dashes
-    .replace(/-+/g, '-');             // collapse multiple dashes
+    return title
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]+/g, '')   // remove accents
+        .replace(/[^a-z0-9]+/g, '-')         // replace one or more invalid characters with a dash
+        .replace(/^-+|-+$/g, '');            // trim dashes from start and end
 }
 
 
