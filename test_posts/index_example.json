@@ -2,6 +2,15 @@
   "$type": "beauty.piss.blog.index",
   "posts": [
     {
+      "title": "On the .index Record",
+      "createdAt": "2025-03-31T03:32:14.773Z",
+      "tags": ["atproto"],
+      "post": {
+        "cid": "bafyreiffrrjz3zfq767u2dxyydogdofurqwh54dzoklu53s4fn2grpasjy",
+        "uri": "at://did:plc:7mnpet2pvof2llhpcwattscf/beauty.piss.blog.entry/3llngdiypnp2z"
+      }
+    },
+    {
       "title": "Yet Another ATProto Blog",
       "createdAt": "2025-03-29T23:04:32.340Z",
       "tags": ["atproto"],

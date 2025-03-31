@@ -4,6 +4,7 @@ import PostRenderer from './PostRenderer'
 import PostIndexSidebar from './PostIndexSidebar'
 import { PostIndex, PostIndexEntry } from './types'
 import { getBlogEntryFromAtUri, getBlogIndex } from './client'
+import { getSlugFromUrl, slugify } from './slugs'
 
 const MY_DID = 'did:plc:7mnpet2pvof2llhpcwattscf'; 
 const INDEX_RKEY = '3lljxymbgil2r'; 
@@ -30,10 +31,18 @@ function App() {
     getBlogIndex(MY_DID, INDEX_RKEY)
       .then(json => {
         setIndexContent(json.value);
-        let posts = json.value.posts; 
+        let posts = json.value.posts;
+        let postBySlug: PostIndexEntry | null | undefined = null; 
         if (posts.length > 0) {
-          let latest = posts[0]; 
-          getBlogEntryFromAtUri(latest.post.uri)
+          let slug = getSlugFromUrl();
+          if (slug) {
+            // Check for a specific slug in the posts
+            postBySlug = posts.find(post => slugify(post.title) === slug);
+          }
+
+          const toLoad = postBySlug || posts[0]; // Fallback to the first post if no slug match
+
+          getBlogEntryFromAtUri(toLoad.post.uri)
             .then(entry => {
               setPostContent(entry.content);
               setIndexCursor(0);
