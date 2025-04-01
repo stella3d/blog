@@ -1,10 +1,8 @@
 {
-  "name": "your-worker-name",
+  "name": "blog",
   "type": "javascript",
-  "account_id": "your-account-id",
+  "account_id": "f6a5931c6687931e6489cb3df717f463",
   "workers_dev": true,
-  "route": "",
-  "zone_id": "",
   "site": {
     "bucket": "./dist",
     "entry-point": "workers-site"
