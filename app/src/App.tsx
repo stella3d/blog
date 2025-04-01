@@ -13,10 +13,6 @@ const getPostPath = (slug: string): string => {
   return slug ? `/post/${slug}` : '/';
 }
 
-function isWidthBelowBreakpoint(): boolean {
-  return window.innerWidth <= 768;
-}
-
 function App() {
   const [postContent, setPostContent] = useState('');
   const [indexContent, setIndexContent] = useState<PostIndex | null>(null);
@@ -82,7 +78,12 @@ function App() {
   return (
     <div className="app-container"> {/* Container with flex styling */}
       {/* Toggle button visible on mobile */}
-      <button className="toggle-sidebar" onClick={toggleSidebar}>☰</button>
+      <button
+        className="toggle-sidebar"
+        style={{ left: isSidebarOpen ? '220px' : '0px' }} // conditionally move button based on sidebar state
+        onClick={toggleSidebar}>
+        ☰
+      </button>
       {indexContent && (
         // Wrap sidebar with a container that toggles its "active" class
         //<div className={`${isSidebarOpen ? 'active' : ''}`}>

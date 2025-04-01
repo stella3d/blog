@@ -37,6 +37,34 @@
   color:lightskyblue;
 }
 
+.post-renderer-container ul {
+  list-style: none; /* remove default bullet */
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.post-renderer-container ul li {
+  display: flex;
+  align-items: center;
+  text-align: left; /* force text alignment to left */
+}
+
+.post-renderer-container ul li::before {
+  content: "\2022"; /* bullet character */
+  display: flex; /* use flex to center the bullet */
+  align-items: center;
+  justify-content: center;
+  width: 30px; /* bullet container width */
+  margin-right: 8px;
+}
+
+.post-renderer-container ul li > * {
+  text-align: left;
+}
+
 .app-container {
   display: flex;
   flex-direction: row;
