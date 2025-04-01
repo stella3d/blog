@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// generate SPA routing redirects for cf pages
+// Updated custom plugin to generate _redirects with forced internal rewrite
 function generateRedirects() {
   return {
     name: 'generate-redirects',
@@ -9,9 +9,8 @@ function generateRedirects() {
       this.emitFile({
         type: 'asset',
         fileName: '_redirects',
-        // Adding an explicit rule for /index.html to prevent infinite loop
-        source: `/index.html  /index.html 200
-/*  /index.html 200`
+        // Use 200! to enforce an internal rewrite without infinite looping
+        source: '/*  /index.html 200!'
       })
     }
   }
