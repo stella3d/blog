@@ -12,7 +12,7 @@ function generateRedirects() {
         // Rule 1: Prevent rewriting /index.html (3 tokens).
         // Rule 2: Match any URL starting with /post/ and rewrite to /index.html (using regex) (3 tokens).
         source: `/index.html  /index.html 200
-^/post/.*$  /index.html 200`
+/post/*  /index.html 200`
       })
     }
   }
