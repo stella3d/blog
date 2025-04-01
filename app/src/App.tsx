@@ -101,7 +101,7 @@ function App() {
   }, []);
 
   return (
-    <div className="app-container"> {/* Container with flex styling */}
+    <div className={`app-container ${isSidebarOpen ? "sidebar-open" : ""}`}> {/* Container with flex styling */}
       {/* Toggle button visible on mobile */}
       <button
         className="toggle-sidebar"
