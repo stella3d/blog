@@ -173,10 +173,10 @@
     top: 10px;
     left: 10px;
     z-index: 9999; /* increased z-index */
-    background: rgba(138, 251, 255, 0.7); 
+    background: rgba(138, 251, 255, 0.6); 
     color: #fff;
     border: none;
-    padding: 4px 8px; 
+    padding: 3px 6px; 
     font-size: 2em; 
     border-radius: 4px;
   }
