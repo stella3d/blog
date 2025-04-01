@@ -104,7 +104,7 @@ function App() {
     <div className={`app-container ${isSidebarOpen ? "sidebar-open" : ""}`}> {/* Container with flex styling */}
       {/* Toggle button visible on mobile */}
       <button
-        className="toggle-sidebar"
+        className={`toggle-sidebar ${isSidebarOpen ? 'open' : ''}`}
         style={{ left: isSidebarOpen ? '220px' : '0px' }} // conditionally move button based on sidebar state
         onClick={toggleSidebar}>
         ☰

@@ -15,6 +15,7 @@
   width: 100%;
   margin: 0;
   padding: 1rem;
+  transition: filter 0.15s ease-out;
 }
 
 .post-renderer-container {
@@ -143,6 +144,12 @@
   display: none;
 }
 
+/* New rule for toggled state with deeper blue */
+.toggle-sidebar.open {
+  background-color: rgba(0, 75, 161, 0.9);
+  transition: left 0.18s ease-out, background-color 0.25s ease-in;
+}
+
 /* Updated mobile responsive styles */
 @media (max-width: 768px) {
   /* Sidebar always rendered for animation */
@@ -190,9 +197,9 @@
     filter: blur(1px) saturate(0.85) brightness(0.9);
     transition: filter 0.18s ease-out;
   }
-  .sidebar-open .post-renderer-container {
-    filter: blur(1px) saturate(0.85);
-    transition: filter 0.18s ease-out;
+  .sidebar-open #headtext {
+    filter: blur(2px) saturate(0.9) brightness(0.92);
+    transition: filter 2s ease-out;
   }
 }
 
