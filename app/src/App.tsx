@@ -117,7 +117,7 @@ function App() {
       )}
       <div className="blog-post">
         <h1 id="headtext">stellz' blog</h1>
-        <PostRenderer content={postContent} />
+        <PostRenderer content={postContent} defocus={isSidebarOpen && window.innerWidth <= 768}/>
       </div>
     </div>
   )

@@ -5,12 +5,14 @@ import rehypeHighlight from 'rehype-highlight';
 import 'highlight.js/styles/base16/seti-ui.css'; 
 
 interface MarkdownRendererProps {
+  defocus: boolean;
   content: string;
 }
 
-const PostRenderer: React.FC<MarkdownRendererProps> = ({ content }) => {
+const PostRenderer: React.FC<MarkdownRendererProps> = ({ defocus, content }) => {
+
   return (
-    <div className="post-renderer-container">
+    <div className={`post-renderer-container ${defocus ? 'sidebar-active' : ''}`}>
       <hr />
       <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
         {content}
