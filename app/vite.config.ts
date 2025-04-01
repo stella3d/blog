@@ -10,8 +10,7 @@ function generateRedirects() {
         type: 'asset',
         fileName: '_redirects',
         // Exclude /index.html so that requests for it are not rewritten and avoid infinite loop.
-        source: `!/index.html
-/*  /index.html 200`
+        source: '/post/*  /index.html 200'
       })
     }
   }
