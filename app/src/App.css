@@ -67,6 +67,13 @@
   text-align: left;
 }
 
+.post-renderer-container pre code {
+  max-width: 80%;
+  margin: 0 auto;       /* centers the code container */
+  display: block;       /* ensure it behaves as a block element */
+  text-align: left;     /* left-aligns the text inside */
+}
+
 /* add a bit of space to the left of inline code blocks, 
    or it looks like a space is missing */
 .post-renderer-container ul li > code {
