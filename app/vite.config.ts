@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// Updated custom plugin to generate _redirects with forced internal rewrite
+// Updated custom plugin to generate _redirects file for SPA routing using an exclusion rule
 function generateRedirects() {
   return {
     name: 'generate-redirects',
@@ -9,8 +9,9 @@ function generateRedirects() {
       this.emitFile({
         type: 'asset',
         fileName: '_redirects',
-        // Use 200! to enforce an internal rewrite without infinite looping
-        source: '/*  /index.html 200!'
+        // Exclude /index.html so that requests for it are not rewritten and avoid infinite loop.
+        source: `!/index.html
+/*  /index.html 200`
       })
     }
   }
