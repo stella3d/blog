@@ -1,0 +1,19 @@
+{
+  "name": "your-worker-name",
+  "type": "javascript",
+  "account_id": "your-account-id",
+  "workers_dev": true,
+  "route": "",
+  "zone_id": "",
+  "site": {
+    "bucket": "./dist",
+    "entry-point": "workers-site"
+  },
+  "redirects": [
+    {
+      "source": "/*",
+      "destination": "/index.html",
+      "status": 200
+    }
+  ]
+}
