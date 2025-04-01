@@ -67,6 +67,12 @@
   text-align: left;
 }
 
+/* add a bit of space to the left of inline code blocks, 
+   or it looks like a space is missing */
+.post-renderer-container ul li > code {
+  padding-left: 0.3rem;
+}
+
 .app-container {
   display: flex;
   flex-direction: row;
