@@ -3,14 +3,15 @@ import { PostIndexEntry } from './types';
 import { isoDateToDisplay } from './utils';
 
 export interface PostIndexSidebarProps {
+  enabled: boolean;
   posts: Array<PostIndexEntry>;
   cursor: number;
   onPostClick: (entry: PostIndexEntry, index: number) => void;
 }
 
-const PostIndexSidebar: React.FC<PostIndexSidebarProps> = ({ posts, cursor, onPostClick }) => {
+const PostIndexSidebar: React.FC<PostIndexSidebarProps> = ({ enabled, posts, cursor, onPostClick }) => {
   return (
-    <div className="post-index-sidebar">
+    <div className={`post-index-sidebar ${enabled ? 'active' : ''}`}>
       <ul>
         {posts.map((entry, idx) => (
           <li key={idx}

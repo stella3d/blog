@@ -13,10 +13,15 @@ const getPostPath = (slug: string): string => {
   return slug ? `/post/${slug}` : '/';
 }
 
+function isWidthBelowBreakpoint(): boolean {
+  return window.innerWidth <= 768;
+}
+
 function App() {
   const [postContent, setPostContent] = useState('');
   const [indexContent, setIndexContent] = useState<PostIndex | null>(null);
   const [indexCursor, setIndexCursor] = useState<number>(0);
+  const [isSidebarOpen, setSidebarOpen] = useState(false); // Added state for toggling the sidebar on mobile
 
   const getPostIndexOnLoad = (posts: PostIndexEntry[]): number => {
     let slug = getSlugFromUrl()
@@ -53,6 +58,10 @@ function App() {
       });
   };
 
+  const toggleSidebar = () => {
+    setSidebarOpen(!isSidebarOpen);
+  }
+
   useEffect(() => {
     getBlogIndex(MY_DID, INDEX_RKEY)
       .then(json => {
@@ -72,8 +81,13 @@ function App() {
 
   return (
     <div className="app-container"> {/* Container with flex styling */}
+      {/* Toggle button visible on mobile */}
+      <button className="toggle-sidebar" onClick={toggleSidebar}>☰</button>
       {indexContent && (
-        <PostIndexSidebar posts={indexContent.posts} cursor={indexCursor} onPostClick={loadPost}/>
+        // Wrap sidebar with a container that toggles its "active" class
+        //<div className={`${isSidebarOpen ? 'active' : ''}`}>
+          <PostIndexSidebar enabled={isSidebarOpen} posts={indexContent.posts} cursor={indexCursor} onPostClick={loadPost}/>
+        //</div>
       )}
       <div className="blog-post">
         <h1 id="headtext">stellz' blog</h1>

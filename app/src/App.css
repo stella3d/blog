@@ -109,3 +109,47 @@
     transform: scale3d(1, 1, 1);
   }
 }
+
+.toggle-sidebar {
+  display: none;
+}
+
+/* Updated mobile responsive styles */
+@media (max-width: 768px) {
+  /* Hide sidebar by default on mobile */
+  .post-index-sidebar {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100%;
+    background: #181818;
+    overflow-y: auto;
+    z-index: 1000;
+    border-right: 1px solid #5b5b5b;
+  }
+  /* Show sidebar when toggled open */
+  .post-index-sidebar.active {
+    display: flex;
+  }
+  /* Mobile layout adjustments */
+  .blog-post {
+    margin-left: 0;
+    padding: 1rem;
+  }
+  /* Updated toggle button styling for better visibility */
+  .toggle-sidebar {
+    display: block;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 9999; /* increased z-index */
+    background: rgba(138, 251, 255, 0.5); /* brighter background */
+    color: #fff;
+    border: none;
+    padding: 8px 12px; 
+    font-size: 1.4em; 
+    border-radius: 4px;
+  }
+}
