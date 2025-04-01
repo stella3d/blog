@@ -219,3 +219,9 @@
     animation-delay: 5s;
   }
 }
+
+/* make sure bsky embed display center-justified */
+.bluesky-embed {
+  justify-content: center;
+  display: inline-flex;
+}
