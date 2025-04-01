@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// Custom plugin to generate _redirects file for SPA routing
+// generate SPA routing redirects for cf pages
 function generateRedirects() {
   return {
     name: 'generate-redirects',
@@ -9,7 +9,9 @@ function generateRedirects() {
       this.emitFile({
         type: 'asset',
         fileName: '_redirects',
-        source: '/*  /index.html  200'
+        // Adding an explicit rule for /index.html to prevent infinite loop
+        source: `/index.html  /index.html 200
+/*  /index.html 200`
       })
     }
   }
@@ -19,7 +21,7 @@ function generateRedirects() {
 export default defineConfig({
   plugins: [
     react(),
-    generateRedirects()  // new plugin to insert _redirects file
+    generateRedirects()  // new plugin to insert updated _redirects file
   ],
   build: {
     outDir: 'dist',
