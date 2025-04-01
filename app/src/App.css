@@ -22,7 +22,8 @@
   margin-top: 4px;
   margin-left: 4px; 
   align-self: flex-start;
-  font-family: sans-serif, Avenir, Helvetica, Arial, system-ui; 
+  font-family: sans-serif, Avenir, Helvetica, Arial, system-ui;
+  transition: filter 0.1s ease-in;
 }
 .post-renderer-container hr {
   margin: 0.2rem 0;
@@ -182,5 +183,6 @@
   }
   .sidebar-open .post-renderer-container {
     filter: blur(1px) saturate(0.85);
+    transition: filter 0.18s ease-out;
   }
 }
