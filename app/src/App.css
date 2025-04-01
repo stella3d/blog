@@ -23,7 +23,7 @@
   margin-left: 4px; 
   align-self: flex-start;
   font-family: sans-serif, Avenir, Helvetica, Arial, system-ui; 
-  transition: filter 0.15s ease-out;
+  transition: filter 0.12s ease-in;
 }
 .post-renderer-container hr {
   margin: 0.2rem 0;
@@ -185,9 +185,9 @@
     transition: left 0.18s ease-out;
   }
 
-  /* Reapply blur effect when sidebar is open */
+  /* apply blur effect when sidebar is open */
   .sidebar-open .post-renderer-container {
-    filter: blur(1px) saturate(0.85);
+    filter: blur(1px) saturate(0.85) brightness(0.9);
     transition: filter 0.18s ease-out;
   }
 }
