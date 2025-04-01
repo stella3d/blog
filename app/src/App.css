@@ -144,9 +144,9 @@
 
 /* Updated mobile responsive styles */
 @media (max-width: 768px) {
-  /* Hide sidebar by default on mobile */
+  /* Sidebar always rendered for animation */
   .post-index-sidebar {
-    display: none;
+    /* remove display:none and use transform instead */
     position: fixed;
     top: 0;
     left: 0;
@@ -156,17 +156,19 @@
     overflow-y: auto;
     z-index: 1000;
     border-right: 1px solid #5b5b5b;
+    transform: translateX(-100%);
+    transition: transform 0.2s ease-out;
   }
-  /* Show sidebar when toggled open */
+  /* Add active class to slide the sidebar in */
   .post-index-sidebar.active {
-    display: flex;
+    transform: translateX(0);
   }
   /* Mobile layout adjustments */
   .blog-post {
     margin-left: 0;
     padding: 1rem;
   }
-  /* Updated toggle button styling for better visibility */
+  /* Toggle button with animated left position */
   .toggle-sidebar {
     display: block;
     position: fixed;
@@ -179,5 +181,12 @@
     padding: 3px 6px; 
     font-size: 2em; 
     border-radius: 4px;
+    transition: left 0.2s ease-out;
+  }
+
+  /* Reapply blur effect when sidebar is open */
+  .sidebar-open .post-renderer-container {
+    filter: blur(1px) saturate(0.85);
+    transition: filter 0.2s ease-out;
   }
 }

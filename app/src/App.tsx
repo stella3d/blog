@@ -101,7 +101,7 @@ function App() {
   }, []);
 
   return (
-    <div className="app-container"> {/* Container with flex styling */}
+    <div className={`app-container ${isSidebarOpen ? "sidebar-open" : ""}`}> {/* Container with flex styling */}
       {/* Toggle button visible on mobile */}
       <button
         className="toggle-sidebar"
@@ -117,7 +117,7 @@ function App() {
       )}
       <div className="blog-post">
         <h1 id="headtext">stellz' blog</h1>
-        <PostRenderer content={postContent} />
+        <PostRenderer content={postContent} defocus={isSidebarOpen && window.innerWidth <= 768}/>
       </div>
     </div>
   )
