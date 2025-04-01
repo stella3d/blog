@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// Updated custom plugin to generate _redirects file with an exclusion rule for /index.html
+// Updated custom plugin to generate _redirects file for post routes using regex
 function generateRedirects() {
   return {
     name: 'generate-redirects',
@@ -9,9 +9,10 @@ function generateRedirects() {
       this.emitFile({
         type: 'asset',
         fileName: '_redirects',
-        // Add exclusion for /index.html before the /post/* rule:
-        source: `!/index.html
-/post/*  /index.html 200`
+        // Rule 1: Prevent rewriting /index.html (3 tokens).
+        // Rule 2: Match any URL starting with /post/ and rewrite to /index.html (using regex) (3 tokens).
+        source: `/index.html  /index.html 200
+^/post/.*$  /index.html 200`
       })
     }
   }
