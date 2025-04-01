@@ -9,6 +9,10 @@ import { getSlugFromUrl, slugify } from './slugs'
 const MY_DID = 'did:plc:7mnpet2pvof2llhpcwattscf'; 
 const INDEX_RKEY = '3lljxymbgil2r'; 
 
+const getPostPath = (slug: string): string => {
+  return slug ? `/post/${slug}` : '/';
+}
+
 function App() {
   const [postContent, setPostContent] = useState('');
   const [indexContent, setIndexContent] = useState<PostIndex | null>(null);
@@ -33,13 +37,9 @@ function App() {
   const setPost = (record: PostRecord, index: number, entry: PostIndexEntry) => {
     setPostContent(record.content)
     setIndexCursor(index);
-
-    let hostName = window.location.hostname;
-    // cf pages deployment won't properly handle the links yet
-    if (!(hostName === 'stellz.club' || hostName === 'piss.beauty')) {
-      const slug = slugify(entry.title);
-      window.history.pushState({ path: slug }, '', `/${slug}`);
-    }
+    const slug = slugify(entry.title);
+    const path = getPostPath(slug);
+    window.history.pushState({ path }, '', path);
   }
 
   const loadPost = (entry: PostIndexEntry, index: number) => {
