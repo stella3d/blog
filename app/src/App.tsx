@@ -75,6 +75,31 @@ function App() {
       });
   }, []);
 
+  useEffect(() => {
+    let debounceTimer: ReturnType<typeof setTimeout>;
+    const handleResize = () => {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        setSidebarOpen(prev => {
+          if (window.innerWidth <= 768 && prev) {
+            //console.log('closing bar: ', window.innerWidth);
+            return false;
+          }
+          if (window.innerWidth >= 896 && !prev) {
+            //console.log('opening bar: ', window.innerWidth);
+            return true;
+          }
+          return prev;
+        });
+      }, 20);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+      clearTimeout(debounceTimer);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <div className="app-container"> {/* Container with flex styling */}
       {/* Toggle button visible on mobile */}
