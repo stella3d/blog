@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// Updated custom plugin to generate _redirects file for SPA routing using an exclusion rule
+// Updated custom plugin to generate _redirects file with an exclusion rule for /index.html
 function generateRedirects() {
   return {
     name: 'generate-redirects',
@@ -9,8 +9,9 @@ function generateRedirects() {
       this.emitFile({
         type: 'asset',
         fileName: '_redirects',
-        // Exclude /index.html so that requests for it are not rewritten and avoid infinite loop.
-        source: '/post/*  /index.html 200'
+        // Add exclusion for /index.html before the /post/* rule:
+        source: `!/index.html
+/post/*  /index.html 200`
       })
     }
   }
