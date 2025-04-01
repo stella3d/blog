@@ -1,5 +1,4 @@
 /// <reference types="node" />
-import { Brand } from '@atcute/client/lexicons';
 import { AT_RPC } from '../src/client';
 import { PostRecord, PostIndex, PostIndexEntry } from '../src/types';
 import * as fs from 'fs';

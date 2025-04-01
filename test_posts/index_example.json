@@ -2,6 +2,15 @@
   "$type": "beauty.piss.blog.index",
   "posts": [
     {
+      "title": "New Basic Features",
+      "createdAt": "2025-04-01T05:06:06.037Z",
+      "tags": ["dev"],
+      "post": {
+        "cid": "bafyreide7afsgz2nwcoocbrtmhtdjn2vntjy53s64lvxctxt2f7uasrdue",
+        "uri": "at://did:plc:7mnpet2pvof2llhpcwattscf/beauty.piss.blog.entry/3llq426btmr2k"
+      }
+    },
+    {
       "title": "On the .index Record",
       "createdAt": "2025-03-31T03:32:14.773Z",
       "tags": ["atproto"],
