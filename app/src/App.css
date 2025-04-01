@@ -29,6 +29,10 @@
   margin: 0.2rem 0;
   border: 0;
   border-top: 1px solid #5b5b5b;
+  filter: opacity(0.4);
+  /* updated animation for pingpong effect */
+  animation: hrBlur 30s ease-in-out infinite alternate;
+  animation-delay: 5s;
 }
 .post-renderer-container h1 {
   color:rgb(251, 192, 255);
@@ -136,6 +140,15 @@
   100% {
     filter: blur(1px) hue-rotate(0deg) saturate(1.1);
     transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes hrBlur {
+  from {
+    filter: blur(0.1px) opacity(0.4);
+  }
+  to {
+    filter: blur(6.9px) opacity(0.69);
   }
 }
 
