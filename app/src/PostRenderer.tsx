@@ -31,9 +31,9 @@ const PostRenderer: React.FC<MarkdownRendererProps> = ({ defocus, content }) => 
         <div className="post-footer">
           <hr />
           <p style={{ fontSize: '0.8em', color: 'lightgrey' }}>
-            <a href={pdslsLink}>view record on PDSls</a>
+            <a href={pdslsLink} target="_blank">view record on PDSls</a>
           </p>
-          <p style={{ fontSize: '0.8em', color: 'grey' }}>
+          <p title="post content ID (CID)" style={{ fontSize: '0.8em', color: 'grey' }}>
             {content.ref.cid}
           </p>
         </div>
