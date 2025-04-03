@@ -251,6 +251,10 @@
   display: inline-flex;
 }
 
+.post-footer {
+  margin-top: 2em;
+}
+
 .post-footer p {
   margin: 0;
   font-size: 0.8em;
