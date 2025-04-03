@@ -85,7 +85,7 @@ function App() {
             //console.log('closing bar: ', window.innerWidth);
             return false;
           }
-          if (window.innerWidth >= 896 && !prev) {
+          if (window.innerWidth > 768 && !prev) {
             //console.log('opening bar: ', window.innerWidth);
             return true;
           }
