@@ -68,10 +68,11 @@
 }
 
 .post-renderer-container pre code {
-  max-width: 80%;
+  max-width: 84%;
   margin: 0 auto;       /* centers the code container */
   display: block;       /* ensure it behaves as a block element */
   text-align: left;     /* left-aligns the text inside */
+  text-wrap: wrap;
 }
 
 /* add a bit of space to the left of inline code blocks, 
@@ -213,6 +214,19 @@
   .sidebar-open #headtext {
     filter: blur(2px) saturate(0.9) brightness(0.92);
     transition: filter 2s ease-out;
+  }
+}
+
+/* Limit width of post-renderer-container for screens just above the mobile breakpoint */
+@media (min-width: 769px) and (max-width: 859px) {
+  .post-renderer-container {
+    max-width: 550px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .post-renderer-container pre code {
+    max-width: 95%;
   }
 }
 
