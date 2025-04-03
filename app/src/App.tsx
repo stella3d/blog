@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import './App.css'
-import PostRenderer from './PostRenderer'
+import PostRenderer, { PostRenderingData } from './PostRenderer'
 import PostIndexSidebar from './PostIndexSidebar'
-import { PostIndex, PostIndexEntry, PostRecord } from './types'
+import { PostIndex, PostIndexEntry, PostRecord, StrongRef } from './types'
 import { getBlogEntryFromAtUri, getBlogIndex } from './client'
 import { getSlugFromUrl, slugify } from './slugs'
 
@@ -17,8 +17,15 @@ const entryAtUriFromRkey = (rkey: string): string => {
   return `at://${MY_DID}/beauty.piss.blog.entry/${rkey}`;
 }
 
+
+const ERROR_RENDERING_DATA: PostRenderingData = {
+  body: 'failed to load post content 🙃', 
+  ref: null
+}
+
+
 function App() {
-  const [postContent, setPostContent] = useState('');
+  const [postContent, setPostContent] = useState<PostRenderingData>({ body: '', ref: null });
   const [indexContent, setIndexContent] = useState<PostIndex | null>(null);
   const [indexCursor, setIndexCursor] = useState<number>(0);
   const [isSidebarOpen, setSidebarOpen] = useState(false); // Added state for toggling the sidebar on mobile
@@ -39,8 +46,12 @@ function App() {
     return 0; // default to the 1st post if no slug is matched
   }
 
-  const setPost = (record: PostRecord, index: number) => {
-    setPostContent(record.content)
+  const setPost = (record: PostRecord, index: number, indexEntry: PostIndexEntry) => {
+    const renderData: PostRenderingData = {
+      body: record.content,
+      ref: { cid: indexEntry.post.cid, uri: indexEntry.post.uri }
+    };
+    setPostContent(renderData)
     setIndexCursor(index);
     const slug = slugify(record.title);
     const path = getPostPath(slug);
@@ -50,11 +61,11 @@ function App() {
   const loadPost = (entry: PostIndexEntry, index: number) => {
     getBlogEntryFromAtUri(entry.post.uri)
       .then(record => {
-        setPost(record, index);
+        setPost(record, index, entry);
       })
       .catch(err => {
         console.error('error fetching post content: ', err);
-        setPostContent('failed to load post content 🙃');
+        setPostContent(ERROR_RENDERING_DATA);
       });
   };
 
@@ -62,14 +73,14 @@ function App() {
     let uri = entryAtUriFromRkey(rkey);
     getBlogEntryFromAtUri(uri)
       .then(record => {
-        setPostContent(record.content)
+        setPostContent({ body: record.content, ref: null })
         const slug = slugify(record.title);
         const path = getPostPath(slug);
         window.history.pushState({ path }, '', path);
       })
       .catch(err => {
         console.error('error fetching post content: ', err);
-        setPostContent('failed to load post content 🙃');
+        setPostContent(ERROR_RENDERING_DATA);
       });
   };
 
@@ -91,12 +102,11 @@ function App() {
     getBlogIndex(MY_DID, INDEX_RKEY)
       .then(json => {
         setIndexContent(json.value);
-
         if (loadingFromRkey) { return; }
 
         let posts = json.value.posts;
         if (posts.length < 1) {
-          setPostContent('no posts found (this is an error, sorry)');
+          setPostContent({ body: 'no posts found (this is an error, sorry)', ref: null });
         }
 
         let postIndex = getPostIndexOnLoad(posts)
@@ -133,8 +143,7 @@ function App() {
   }, []);
 
   return (
-    <div className={`app-container ${isSidebarOpen ? "sidebar-open" : ""}`}> {/* Container with flex styling */}
-      {/* Toggle button visible on mobile */}
+    <div className={`app-container ${isSidebarOpen ? "sidebar-open" : ""}`}> 
       <button
         className={`toggle-sidebar ${isSidebarOpen ? 'open' : ''}`}
         style={{ left: isSidebarOpen ? '220px' : '0px' }} // conditionally move button based on sidebar state
@@ -142,10 +151,7 @@ function App() {
         ☰
       </button>
       {indexContent && (
-        // Wrap sidebar with a container that toggles its "active" class
-        //<div className={`${isSidebarOpen ? 'active' : ''}`}>
           <PostIndexSidebar enabled={isSidebarOpen} posts={indexContent.posts} cursor={indexCursor} onPostClick={loadPost}/>
-        //</div>
       )}
       <div className="blog-post">
         <h1 id="headtext">stellz' blog</h1>

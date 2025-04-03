@@ -27,8 +27,8 @@ a:hover {
 }
 
 @font-face {
-  font-family: 'LoveLetterTW'; /* Choose a name for your font */
-  src: url('assets/LoveLetterTW.woff2') format('woff2'); /* Path to your WOFF2 file */
+  font-family: 'LoveLetterTW'; 
+  src: url('assets/LoveLetterTW.woff2') format('woff2'); 
 }
 
 body {

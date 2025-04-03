@@ -34,10 +34,12 @@ export type PostIndexEntry = {
   title: string;
   createdAt: string; // ISO date string
   tags?: Array<string>;
-  post: {
-    cid: string; // Content Identifier
-    uri: string; // URI for accessing the post
-  };
+  post: StrongRef;
+}
+
+export type StrongRef = {
+  cid: string; // Content Identifier
+  uri: string; // URI for accessing the post
 }
 
 export type PostRecord = {
