@@ -13,6 +13,10 @@ const getPostPath = (slug: string): string => {
   return slug ? `/post/${slug}` : '/';
 }
 
+const entryAtUriFromRkey = (rkey: string): string => {
+  return `at://${MY_DID}/beauty.piss.blog.entry/${rkey}`;
+}
+
 function App() {
   const [postContent, setPostContent] = useState('');
   const [indexContent, setIndexContent] = useState<PostIndex | null>(null);
@@ -35,10 +39,10 @@ function App() {
     return 0; // default to the 1st post if no slug is matched
   }
 
-  const setPost = (record: PostRecord, index: number, entry: PostIndexEntry) => {
+  const setPost = (record: PostRecord, index: number) => {
     setPostContent(record.content)
     setIndexCursor(index);
-    const slug = slugify(entry.title);
+    const slug = slugify(record.title);
     const path = getPostPath(slug);
     window.history.pushState({ path }, '', path);
   }
@@ -46,7 +50,22 @@ function App() {
   const loadPost = (entry: PostIndexEntry, index: number) => {
     getBlogEntryFromAtUri(entry.post.uri)
       .then(record => {
-        setPost(record, index, entry)
+        setPost(record, index);
+      })
+      .catch(err => {
+        console.error('error fetching post content: ', err);
+        setPostContent('failed to load post content 🙃');
+      });
+  };
+
+  const loadPostRkey = (rkey: string) => {
+    let uri = entryAtUriFromRkey(rkey);
+    getBlogEntryFromAtUri(uri)
+      .then(record => {
+        setPostContent(record.content)
+        const slug = slugify(record.title);
+        const path = getPostPath(slug);
+        window.history.pushState({ path }, '', path);
       })
       .catch(err => {
         console.error('error fetching post content: ', err);
@@ -59,9 +78,22 @@ function App() {
   }
 
   useEffect(() => {
+    // check for rkey param in url
+    const urlParams = new URLSearchParams(window.location.search);
+    const rkeyParam = urlParams.get('rkey')?.trim();
+
+    const loadingFromRkey = !!rkeyParam && rkeyParam !== '';
+    if (loadingFromRkey) {
+      // If there's a rkey param, load that post directly
+      loadPostRkey(rkeyParam);
+    }
+
     getBlogIndex(MY_DID, INDEX_RKEY)
       .then(json => {
         setIndexContent(json.value);
+
+        if (loadingFromRkey) { return; }
+
         let posts = json.value.posts;
         if (posts.length < 1) {
           setPostContent('no posts found (this is an error, sorry)');
