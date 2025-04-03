@@ -32,7 +32,9 @@ const PostIndexSidebar: React.FC<PostIndexSidebarProps> = ({ enabled, posts, cur
               <span style={{ color: "rgb(251, 192, 255)", fontSize: "0.7em", marginLeft: "0.5em", fontWeight: "bold" }}>
                 {"🏷️ "}
                 {entry.tags.slice(0, 3).join(", ")}
-                {entry.tags.length > 3 && " ..."}
+                {entry.tags.length > 3 && (
+                  ", +" + (entry.tags.length - 3).toString()
+                )}
               </span>
             )}
           </li>
