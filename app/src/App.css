@@ -235,7 +235,7 @@
   #headtext {
     animation: smoothFilter 44s infinite alternate ease-in-out;
   }
-  .post-renderer-container hr {
+  .post-renderer-container hr:first-of-type {
     animation: hrBlur 30s ease-in-out infinite alternate;
     animation-delay: 5s;
   }
@@ -246,3 +246,4 @@
   justify-content: center;
   display: inline-flex;
 }
+
