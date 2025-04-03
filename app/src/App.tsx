@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import PostRenderer, { PostRenderingData } from './PostRenderer'
 import PostIndexSidebar from './PostIndexSidebar'
-import { PostIndex, PostIndexEntry, PostRecord, StrongRef } from './types'
+import { PostIndex, PostIndexEntry, PostRecord } from './types'
 import { getBlogEntryFromAtUri, getBlogIndex } from './client'
 import { getSlugFromUrl, slugify } from './slugs'
 
@@ -17,12 +17,10 @@ const entryAtUriFromRkey = (rkey: string): string => {
   return `at://${MY_DID}/beauty.piss.blog.entry/${rkey}`;
 }
 
-
 const ERROR_RENDERING_DATA: PostRenderingData = {
   body: 'failed to load post content 🙃', 
   ref: null
 }
-
 
 function App() {
   const [postContent, setPostContent] = useState<PostRenderingData>({ body: '', ref: null });

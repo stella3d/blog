@@ -239,6 +239,10 @@
     animation: hrBlur 30s ease-in-out infinite alternate;
     animation-delay: 5s;
   }
+  .post-renderer-container .post-footer hr {
+    animation: none;
+    animation-delay: 0s;
+  }
 }
 
 /* make sure bsky embed display center-justified */
@@ -247,3 +251,11 @@
   display: inline-flex;
 }
 
+.post-footer p {
+  margin: 0;
+  font-size: 0.8em;
+}
+
+.post-footer p:first-of-type {
+  padding-top: 0.25em;
+}
