@@ -19,12 +19,17 @@ const PostIndexSidebar: React.FC<PostIndexSidebarProps> = ({ enabled, posts, cur
 
   return (
     <div className={`post-index-sidebar ${enabled ? 'active' : ''}`}>
-      {/* Tag filtering dropdown */}
       <div style={{ marginBottom: '0.2em' }}>
-        <select className="tag-select" value={selectedTag} onChange={(e) => setSelectedTag(e.target.value)}>
+        <select
+          className="tag-select"
+          value={selectedTag}
+          onChange={setTagWithQuery(setSelectedTag)}
+        >
           <option value="all">all tags</option>
           {allTags.map(tag => (
-            <option key={tag} value={tag}>{tag}</option>
+            <option key={tag} value={tag}>
+              {tag}
+            </option>
           ))}
         </select>
       </div>
@@ -60,4 +65,22 @@ const PostIndexSidebar: React.FC<PostIndexSidebarProps> = ({ enabled, posts, cur
   );
 };
 
+function setTagWithQuery(setSelectedTag: React.Dispatch<React.SetStateAction<string>>): React.ChangeEventHandler<HTMLSelectElement> | undefined {
+  return (e) => {
+    const value = e.target.value;
+    setSelectedTag(value);
+    const searchParams = new URLSearchParams(window.location.search);
+    if (value === 'all') {
+      searchParams.delete("tag");
+    } else {
+      searchParams.set("tag", value);
+    }
+    const query = searchParams.toString();
+    const newUrl = window.location.pathname + (query ? "?" + query : "");
+    window.history.pushState(null, "", newUrl);
+  };
+}
+
 export default PostIndexSidebar;
+
+
