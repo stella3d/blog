@@ -21,7 +21,7 @@ const PostIndexSidebar: React.FC<PostIndexSidebarProps> = ({ enabled, posts, cur
     <div className={`post-index-sidebar ${enabled ? 'active' : ''}`}>
       {/* Tag filtering dropdown */}
       <div style={{ marginBottom: '0.2em' }}>
-        <select value={selectedTag} onChange={(e) => setSelectedTag(e.target.value)}>
+        <select className="tag-select" value={selectedTag} onChange={(e) => setSelectedTag(e.target.value)}>
           <option value="all">all tags</option>
           {allTags.map(tag => (
             <option key={tag} value={tag}>{tag}</option>

@@ -94,6 +94,7 @@
   width: 200px;
   border-right: 1px solid #5b5b5b;
   padding: 6px;
+  padding-top: 3px;
   overflow-y: auto;
 }
 
@@ -162,6 +163,14 @@
 .toggle-sidebar.open {
   background-color: rgba(0, 75, 161, 0.9);
   transition: left 0.18s ease-out, background-color 0.25s ease-in;
+}
+
+/* New rule to widen tag select dropdown by 25% */
+.tag-select {
+  min-width: 72px;
+  max-width: 144px;
+  text-align: center;
+  color:ghostwhite
 }
 
 /* Updated mobile responsive styles */
