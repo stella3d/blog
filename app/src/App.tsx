@@ -4,13 +4,14 @@ import PostRenderer, { PostRenderingData } from './PostRenderer'
 import PostIndexSidebar from './PostIndexSidebar'
 import { PostIndex, PostIndexEntry, PostRecord } from './types'
 import { getBlogEntryFromAtUri, getBlogIndex } from './client'
-import { getSlugFromUrl, slugify } from './slugs'
+import { getSlugFromUrl, getTagFromQuery, slugify } from './slugs'
 
 const MY_DID = 'did:plc:7mnpet2pvof2llhpcwattscf'; 
 const INDEX_RKEY = '3lljxymbgil2r'; 
 
 const getPostPath = (slug: string): string => {
-  return slug ? `/post/${slug}` : '/';
+  let query = window.location.search;
+  return slug ? `/post/${slug}${query}` : `${query}`;
 }
 
 const entryAtUriFromRkey = (rkey: string): string => {
@@ -41,6 +42,16 @@ function App() {
         return slugIndex;
       }
     }
+
+    let tag = getTagFromQuery();
+    if (tag) {
+      // find the first post with the matching tag
+      const tagIndex = posts.findIndex(p => p.tags && p.tags.includes(tag));
+      if (tagIndex !== -1) {
+        return tagIndex;
+      }
+    }
+    
     return 0; // default to the 1st post if no slug is matched
   }
 
@@ -89,9 +100,11 @@ function App() {
   useEffect(() => {
     // check for rkey param in url
     const urlParams = new URLSearchParams(window.location.search);
-    const rkeyParam = urlParams.get('rkey')?.trim();
 
+    const rkeyParam = urlParams.get('rkey')?.trim();
     const loadingFromRkey = !!rkeyParam && rkeyParam !== '';
+
+
     if (loadingFromRkey) {
       // If there's a rkey param, load that post directly
       loadPostRkey(rkeyParam);
@@ -140,6 +153,10 @@ function App() {
     };
   }, []);
 
+  const urlParams = new URLSearchParams(window.location.search);
+  const tagParam = urlParams.get('tag')?.trim() || null;
+
+
   return (
     <div className={`app-container ${isSidebarOpen ? "sidebar-open" : ""}`}> 
       <button
@@ -149,7 +166,7 @@ function App() {
         ☰
       </button>
       {indexContent && (
-          <PostIndexSidebar enabled={isSidebarOpen} posts={indexContent.posts} cursor={indexCursor} onPostClick={loadPost}/>
+          <PostIndexSidebar enabled={isSidebarOpen} posts={indexContent.posts} cursor={indexCursor} onPostClick={loadPost} tag={tagParam}/>
       )}
       <div className="blog-post">
         <h1 id="headtext">stellz' blog</h1>

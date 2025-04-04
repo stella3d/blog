@@ -15,3 +15,10 @@ export function getSlugFromUrl(): string {
     const slug = segments[segments.length - 1];
     return slug && slug !== '/' ? slug : '';
 }
+
+export function getTagFromQuery(): string | null {
+    // Extract the tag from the URL query parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const tag = urlParams.get('tag');
+    return tag ? tag.trim() : null;
+}
