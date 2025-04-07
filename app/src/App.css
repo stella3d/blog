@@ -68,7 +68,7 @@
 }
 
 .post-renderer-container pre code {
-  max-width: 84%;
+  max-width: 86%;
   margin: 0 auto;       
   display: block;       
   text-align: left;     
@@ -116,8 +116,8 @@
 .blog-post {
   flex: 1;
   margin-left: 220px;
-  padding-right: 10px;
-  margin-right: 20px;
+  padding-right: 4px;
+  margin-right: 2px;
 }
 
 @keyframes smoothFilter {
@@ -238,11 +238,17 @@
   }
 }
 
-@media (max-width: 692px) {
+@media (max-width: 686px) {
   .post-renderer-container pre code {
     max-width: 98%;
     padding: 0.4em 0.1em 0.4em 0.1em !important;
     font-size: small;
+  }
+}
+@media (max-width: 532px) {
+  .post-renderer-container pre code {
+    max-width: 100%;
+    font-size: smaller;
   }
 }
 
