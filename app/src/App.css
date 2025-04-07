@@ -51,15 +51,15 @@
 .post-renderer-container ul li {
   display: flex;
   align-items: center;
-  text-align: left; /* force text alignment to left */
+  text-align: left;
 }
 
 .post-renderer-container ul li::before {
   content: "\2022"; /* bullet character */
-  display: flex; /* use flex to center the bullet */
+  display: flex; 
   align-items: center;
   justify-content: center;
-  width: 30px; /* bullet container width */
+  width: 30px;
   margin-right: 8px;
 }
 
@@ -69,12 +69,16 @@
 
 .post-renderer-container pre code {
   max-width: 84%;
-  margin: 0 auto;       /* centers the code container */
-  display: block;       /* ensure it behaves as a block element */
-  text-align: left;     /* left-aligns the text inside */
+  margin: 0 auto;       
+  display: block;       
+  text-align: left;     
   text-wrap: wrap;
+  padding: 0.8em 0.8em 0.8em 0.8em !important;
 }
 
+.post-renderer-container pre code {
+  max-width: 96%;
+}
 /* add a bit of space to the left of inline code blocks, 
    or it looks like a space is missing */
 .post-renderer-container ul li > code {
@@ -159,13 +163,11 @@
   display: none;
 }
 
-/* New rule for toggled state with deeper blue */
 .toggle-sidebar.open {
   background-color: rgba(0, 75, 161, 0.9);
   transition: left 0.18s ease-out, background-color 0.25s ease-in;
 }
 
-/* New rule to widen tag select dropdown by 25% */
 .tag-select {
   min-width: 72px;
   max-width: 144px;
@@ -173,11 +175,9 @@
   color:ghostwhite
 }
 
-/* Updated mobile responsive styles */
 @media (max-width: 768px) {
   /* Sidebar always rendered for animation */
   .post-index-sidebar {
-    /* remove display:none and use transform instead */
     position: fixed;
     top: 0;
     left: 0;
@@ -190,22 +190,22 @@
     transform: translateX(-100%);
     transition: transform 0.18s ease-out;
   }
-  /* Add active class to slide the sidebar in */
+
   .post-index-sidebar.active {
     transform: translateX(0);
   }
-  /* Mobile layout adjustments */
+
   .blog-post {
     margin-left: 0;
     padding: 1rem;
   }
-  /* Toggle button with animated left position */
+
   .toggle-sidebar {
     display: block;
     position: fixed;
     top: 10px;
     left: 10px;
-    z-index: 9999; /* increased z-index */
+    z-index: 9999; 
     background: rgba(138, 251, 255, 0.6); 
     color: #fff;
     border: none;
@@ -213,6 +213,11 @@
     font-size: 2em; 
     border-radius: 4px;
     transition: left 0.18s ease-out;
+  }
+
+  .post-renderer-container pre code {
+    max-width: 96%;
+    padding: 1em 0.5em 1em 0.5em !important;
   }
 
   /* apply blur effect when sidebar is open */
