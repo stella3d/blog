@@ -202,8 +202,9 @@
   }
 
   .blog-post {
-    margin-left: 0;
-    padding: 1rem;
+    margin-left: 2px;
+    padding: 1rem 0.1rem 1rem 0.1rem;
+    margin-right: 2px
   }
 
   .toggle-sidebar {
@@ -237,7 +238,7 @@
   }
 }
 
-@media (max-width: 716px) {
+@media (max-width: 692px) {
   .post-renderer-container pre code {
     max-width: 98%;
     padding: 0.4em 0.1em 0.4em 0.1em !important;
