@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import rehypeHighlight from 'rehype-highlight';
-// TODO - customize theme
+import rehypeRaw from 'rehype-raw';
 import 'highlight.js/styles/atom-one-dark.min.css'; 
 import { StrongRef } from './types';
 
@@ -24,7 +24,7 @@ const PostRenderer: React.FC<MarkdownRendererProps> = ({ defocus, content }) => 
   return (
     <div className={`post-renderer-container ${defocus ? 'sidebar-active' : ''}`}>
       <hr />
-      <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
+      <ReactMarkdown rehypePlugins={[rehypeHighlight, rehypeRaw]}>
         {content.body}
       </ReactMarkdown>
       {content.ref && pdslsLink && (

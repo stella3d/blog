@@ -283,7 +283,9 @@
 /* make sure bsky embed display center-justified */
 .bluesky-embed {
   justify-content: center;
-  display: inline-flex;
+  display: inline-flex !important;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 .post-footer {
