@@ -4,7 +4,8 @@
     "paths": {
       "atcuteLexicons": ["./src/atcuteLexicon.ts"]
     },
-    "types": ["atcuteLexicons", "@atcute/whitewind/lexicons"]
+    "types": ["atcuteLexicons", "@atcute/whitewind/lexicons"],
+    "module": "NodeNext"
   },
   "references": [
     { "path": "./tsconfig.app.json" },

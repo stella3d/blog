@@ -1,0 +1,9 @@
+{
+  "type": "module",
+  "scripts": {
+    "preview": "ts-node app/preview-server.ts"
+  },
+  "dependencies": {
+    "ws": "^8.13.0"
+  }
+}

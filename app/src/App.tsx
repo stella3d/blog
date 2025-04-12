@@ -154,8 +154,27 @@ function App() {
   }, []);
 
   const urlParams = new URLSearchParams(window.location.search);
-  const tagParam = urlParams.get('tag')?.trim() || null;
+  const previewModeEnabled = urlParams.get('preview') === 'true';
+  const href = window.location.href;
+  
+  if (previewModeEnabled && (href.includes('localhost') || href.includes("127.0.0.1"))) {
+    useEffect(() => {
+      const ws = new WebSocket('ws://localhost:3001');
+      ws.onmessage = event => {
+        try {
+          const data = JSON.parse(event.data);
+          if(data.content) {
+            setPostContent({ body: data.content, ref: null });
+          }
+        } catch (e) {
+          console.error("Error parsing websocket message", e);
+        }
+      };
+      return () => ws.close();
+    }, []);
+  }
 
+  const tagParam = urlParams.get('tag')?.trim() || null;
 
   return (
     <div className={`app-container ${isSidebarOpen ? "sidebar-open" : ""}`}> 
