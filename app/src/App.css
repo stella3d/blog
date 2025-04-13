@@ -38,6 +38,14 @@
 .post-renderer-container h2 {
   color:lightskyblue;
 }
+.post-renderer-container h3 {
+  color:skyblue;
+}
+.post-renderer-container h4 {
+  color:cyan;
+  margin-block-start: 0.5em;
+  margin-block-end: 0.5em;
+}
 
 .post-renderer-container ul {
   list-style: none; /* remove default bullet */
@@ -299,4 +307,31 @@
 
 .post-footer p:first-of-type {
   padding-top: 0.25em;
+}
+
+@media (max-width: 400px) {
+  .post-renderer-container {
+    max-width: 92%;
+    box-sizing: border-box;
+    padding: 0.5rem; /* adjust as necessary */
+    margin: 0 auto;
+  }
+
+  .post-renderer-container h1 {
+    font-size: 2.25em;
+  }
+  .post-renderer-container h2 {
+    font-size: 1.25em;
+  }
+  .post-renderer-container h4 {
+    color:cyan;
+    margin-block-start: 0.2em;
+    margin-block-end: 0.2em;
+  }
+
+
+  .post-renderer-container pre code {
+    max-width: 98%;
+    font-size: xx-small;
+  }
 }
