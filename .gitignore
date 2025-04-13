@@ -12,3 +12,7 @@ dist-ssr
 .vscode/*
 !.vscode/extensions.json
 .DS_Store
+
+posts
+test_posts
+app/.vite
