@@ -183,9 +183,39 @@
   color:ghostwhite
 }
 
-@media (min-width: 769px) {
+@media (min-width: 769px) and (max-width: 859px) {
+  .post-renderer-container pre code {
+    max-width: 92%;
+  }
+}
+@media (min-width: 859px)and (max-width: 955px) {
   .post-renderer-container pre code {
     max-width: 90%;
+  }
+}
+@media (min-width: 956px)and (max-width: 1023px) {
+  .post-renderer-container pre code {
+    max-width: 88%;
+  }
+}
+@media (min-width: 1024px) and (max-width: 1139px) {
+  .post-renderer-container pre code {
+    max-width: 86%;
+  }
+}
+@media (min-width: 1140px) and (max-width: 1279px) {
+  .post-renderer-container pre code {
+    max-width: 83%;
+  }
+}
+@media (min-width: 1280px) and (max-width: 1355px) {
+  .post-renderer-container pre code {
+    max-width: 80%;
+  }
+}
+@media (min-width: 1356px) {
+  .post-renderer-container pre code {
+    max-width: 78%;
   }
 }
 
