@@ -81,6 +81,7 @@
   display: block;       
   text-align: left;     
   text-wrap: wrap;
+  word-wrap: break-word;
   padding: 0.8em 0.8em 0.8em 0.8em !important;
 }
 
@@ -123,9 +124,14 @@
 
 .blog-post {
   flex: 1;
-  margin-left: 220px;
   padding-right: 4px;
   margin-right: 2px;
+}
+
+@media (min-width: 769px) {
+  .blog-post {
+    margin-left: 220px;
+  }
 }
 
 @keyframes smoothFilter {
@@ -285,7 +291,7 @@
 }
 @media (max-width: 532px) {
   .post-renderer-container pre code {
-    max-width: 100%;
+    max-width: 98%;
     font-size: smaller;
   }
 }
@@ -359,6 +365,32 @@
     margin-block-end: 0.2em;
   }
 
+  .post-renderer-container pre code {
+    max-width: 98%;
+    font-size: xx-small;
+  }
+}
+
+@media (min-width: 401px) and (max-width: 500px) {
+  .post-renderer-container {
+    max-width: 98%;
+    min-width: 92%;
+    box-sizing: border-box;
+    padding: 0.5rem; 
+    margin: 0 auto;
+  }
+
+  .post-renderer-container h1 {
+    font-size: 2.5em;
+  }
+  .post-renderer-container h2 {
+    font-size: 1.5em;
+  }
+  .post-renderer-container h4 {
+    color:cyan;
+    margin-block-start: 0.1em;
+    margin-block-end: 0.1em;
+  }
 
   .post-renderer-container pre code {
     max-width: 98%;
