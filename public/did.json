@@ -1,0 +1,26 @@
+{
+	"@context": [
+		"https://www.w3.org/ns/did/v1",
+		"https://w3id.org/security/multikey/v1",
+		"https://w3id.org/security/suites/secp256k1-2019/v1"
+	],
+	"id": "did:web:stellz.club",
+	"alsoKnownAs": [
+		"at://stellz.club"
+	],
+	"verificationMethod": [
+		{
+			"id": "did:web:stellz.club#atproto",
+			"type": "Multikey",
+			"controller": "did:web:stellz.club",
+			"publicKeyMultibase": "zQ3shRwdxfu5DJQtKMKvbdhtUfgSNJYgXwfybjC2qvKUEAG4z"
+		}
+	],
+	"service": [
+		{
+			"id": "#atproto_pds",
+			"type": "AtprotoPersonalDataServer",
+			"serviceEndpoint": "https://pds.stellz.club"
+		}
+	]
+}
