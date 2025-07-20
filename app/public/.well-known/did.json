@@ -20,7 +20,7 @@
 		{
 			"id": "#atproto_pds",
 			"type": "AtprotoPersonalDataServer",
-			"serviceEndpoint": "https://pds.piss.beauty"
+			"serviceEndpoint": "https://pds.stellz.club"
 		}
 	]
 }
